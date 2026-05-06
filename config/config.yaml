@@ -1,0 +1,76 @@
+# Supply Chain ML Configuration
+
+project:
+  name: "Supply Chain ML"
+  version: "1.0.0"
+  environment: "development"
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  features_dir: "data/features"
+  external_dir: "data/external"
+
+  # Dataset: Store Item Demand Forecasting
+  dataset_name: "store_item_demand"
+  kaggle_competition: "demand-forecasting-kernels-only"
+
+  # Data splitting
+  train_start: "2013-01-01"
+  train_end: "2017-12-31"
+  test_start: "2018-01-01"
+  test_end: "2018-03-31"
+
+models:
+  saved_dir: "models/saved"
+  registry_dir: "models/registry"
+
+  # Forecasting models
+  forecasting:
+    xgboost:
+      n_estimators: 500
+      max_depth: 6
+      learning_rate: 0.05
+      subsample: 0.8
+      colsample_bytree: 0.8
+
+    lstm:
+      units_1: 128
+      units_2: 64
+      dropout: 0.2
+      epochs: 100
+      batch_size: 64
+      learning_rate: 0.001
+
+  # Risk models
+  risk:
+    random_forest:
+      n_estimators: 200
+      max_depth: 10
+
+    isolation_forest:
+      n_estimators: 100
+      contamination: 0.05
+
+  # Inventory optimization
+  inventory:
+    default_service_level: 0.95
+    default_lead_time: 7
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+  cors_origins:
+    - "http://localhost:3000"
+    - "http://localhost:8501"
+
+dashboard:
+  title: "Supply Chain Intelligence Dashboard"
+  page_icon: "📊"
+  layout: "wide"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/app.log"

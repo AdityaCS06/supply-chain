@@ -1,0 +1,52 @@
+# Logging Configuration
+
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  default:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+  detailed:
+    format: '%(asctime)s - %(name)s - %(levelname)s - %(module)s:%(lineno)d - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: default
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.FileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/app.log
+    mode: a
+
+loggers:
+  src:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  src.data:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  src.models:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  src.api:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+root:
+  level: INFO
+  handlers: [console]
