@@ -71,3 +71,4 @@ htmlcov/
 
 # Streamlit
 .streamlit/
+./html/
