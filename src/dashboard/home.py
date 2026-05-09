@@ -21,7 +21,7 @@ try:
         col4.metric("Products", sales_df['item'].nunique())
 
         daily = sales_df.groupby('date')['sales'].sum().reset_index()
-        st.plotly_chart(px.line(daily, x="date", y="sales"), use_container_width=True)
+        st.plotly_chart(px.line(daily, x="date", y="sales"), width='stretch')
 
     with tab2:
         st.header("Forecasting - XGBoost MAPE: 12.08%")
@@ -29,21 +29,21 @@ try:
         item = st.selectbox("Product", sales_df['item'].unique())
         data = sales_df[(sales_df['store']==store) & (sales_df['item']==item)]
         if not data.empty:
-            st.plotly_chart(px.line(data, x="date", y="sales"), use_container_width=True)
+            st.plotly_chart(px.line(data, x="date", y="sales"), width='stretch')
 
     with tab3:
         st.header("Risk Assessment")
         risk_df = pd.read_csv("data/raw/suppliers.csv")
         st.metric("Suppliers", len(risk_df))
         st.metric("Avg Risk", f"{risk_df['overall_risk_score'].mean():.1f}")
-        st.plotly_chart(px.pie(risk_df, names="risk_level"), use_container_width=True)
+        st.plotly_chart(px.pie(risk_df, names="risk_level"), width='stretch')
 
     with tab4:
         st.header("Inventory Optimization")
         inv_df = pd.read_csv("data/processed/inventory_optimization.csv")
         st.metric("Avg EOQ", f"{inv_df['eoq'].mean():.0f}")
         st.metric("Total Cost", f"${inv_df['total_inventory_cost'].sum():,.0f}")
-        st.dataframe(inv_df, use_container_width=True)
+        st.dataframe(inv_df, width='stretch')
 
 except Exception as e:
     st.error(f"Error: {e}")
