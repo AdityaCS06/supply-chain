@@ -11,8 +11,27 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+ICONS = {
+    "trending_up": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+    "dollar": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+    "store": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
+    "package": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.29 7 12 12 20.71 7"/><line x1="12" y1="22" x2="12" y2="12"/></svg>',
+    "chart": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+    "truck": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>',
+    "users": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+    "alert": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    "globe": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>',
+    "factory": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>',
+    "repeat": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>',
+    "pie": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>',
+    "bar": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>',
+    "max": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>',
+    "min": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>',
+    "database": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5V19A9 3 0 0 0 21 19V5"/><path d="M3 12A9 3 0 0 0 21 12"/></svg>',
+    "settings": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>',
+}
+
 st.markdown("""
-<link rel="stylesheet" href="https://unpkg.com/lucide-static@latest/font/lucide.css">
 <style>
     .stTabs [data-baseweb="tab-list"] {
         gap: 8px;
@@ -51,16 +70,8 @@ st.markdown("""
         border-radius: 0 0 20px 20px;
         margin-bottom: 30px;
     }
-    .sidebar-nav {
-        background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-        padding: 20px;
-        border-radius: 0 16px 16px 0;
-    }
     h1, h2, h3 {
         color: #1a1a2e;
-    }
-    .highlight {
-        color: #1a73e8;
     }
     .footer {
         text-align: center;
@@ -81,8 +92,12 @@ st.markdown("""
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 24px;
     }
+    .icon-blue { background: rgba(26, 115, 232, 0.1); color: #1a73e8; }
+    .icon-green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .icon-purple { background: rgba(124, 77, 255, 0.1); color: #7c4dff; }
+    .icon-orange { background: rgba(245, 158, 11, 0.1); color: #f59e0b; }
+    .icon-red { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -134,22 +149,29 @@ with st.sidebar:
 
 st.markdown('<div class="gradient-header"><h1 style="color: white; margin: 0; font-size: 32px;">Supply Chain Intelligence Dashboard</h1><p style="color: rgba(255,255,255,0.8); margin: 5px 0 0 0;">Real-time analytics powered by ML</p></div>', unsafe_allow_html=True)
 
-def metric_card(col, label, value, delta=None, color="#1a73e8"):
+def metric_card(col, label, value, icon_name, icon_color_class, border_color):
+    icon_svg = ICONS.get(icon_name, ICONS["package"])
     with col:
         st.markdown(f"""
-        <div class="stitched-card" style="border-left: 4px solid {color};">
-            <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 10px;">{label}</div>
-            <div style="font-size: 28px; font-weight: 700; color: #1a1a2e;">{value}</div>
-            {f'<div style="font-size: 12px; color: #22c55e; margin-top: 5px;">{delta}</div>' if delta else ''}
+        <div class="stitched-card" style="border-left: 4px solid {border_color};">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <div class="icon-wrapper {icon_color_class}">
+                    {icon_svg}
+                </div>
+                <div>
+                    <div style="font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 4px;">{label}</div>
+                    <div style="font-size: 26px; font-weight: 700; color: #1a1a2e;">{value}</div>
+                </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
 
 if page == "Overview":
     col1, col2, col3, col4 = st.columns(4)
-    metric_card(col1, "Total Revenue", f"${sales_df['sales'].sum():,.0f}", color="#22c55e")
-    metric_card(col2, "Daily Average", f"${sales_df['sales'].mean():,.1f}", color="#1a73e8")
-    metric_card(col3, "Active Stores", sales_df['store'].nunique(), color="#7c4dff")
-    metric_card(col4, "Products", sales_df['item'].nunique(), color="#f59e0b")
+    metric_card(col1, "Total Revenue", f"${sales_df['sales'].sum():,.0f}", "dollar", "icon-green", "#22c55e")
+    metric_card(col2, "Daily Average", f"${sales_df['sales'].mean():,.1f}", "chart", "icon-blue", "#1a73e8")
+    metric_card(col3, "Active Stores", sales_df['store'].nunique(), "store", "icon-purple", "#7c4dff")
+    metric_card(col4, "Products", sales_df['item'].nunique(), "package", "icon-orange", "#f59e0b")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -201,10 +223,10 @@ elif page == "Demand Forecasting":
     min_sales = item_data['sales'].min()
     total_sales = item_data['sales'].sum()
     
-    metric_card(col1, "Total Sales", f"{total_sales:,}", color="#22c55e")
-    metric_card(col2, "Avg Daily", f"{avg_sales:.1f}", color="#1a73e8")
-    metric_card(col3, "Peak Sale", f"{max_sales:,}", color="#f59e0b")
-    metric_card(col4, "Min Sale", f"{min_sales:,}", color="#ef4444")
+    metric_card(col1, "Total Sales", f"{total_sales:,}", "dollar", "icon-green", "#22c55e")
+    metric_card(col2, "Avg Daily", f"{avg_sales:.1f}", "chart", "icon-blue", "#1a73e8")
+    metric_card(col3, "Peak Sale", f"{max_sales:,}", "max", "icon-orange", "#f59e0b")
+    metric_card(col4, "Min Sale", f"{min_sales:,}", "min", "icon-red", "#ef4444")
     
     st.markdown("<br>", unsafe_allow_html=True)
     
@@ -251,10 +273,10 @@ elif page == "Risk Analysis":
         avg_risk = risk_df['overall_risk_score'].mean() if 'overall_risk_score' in risk_df else 0
         high_risk = len(risk_df[risk_df['risk_level'] == 'High']) if 'risk_level' in risk_df else 0
         
-        metric_card(col1, "Total Suppliers", len(risk_df), color="#1a73e8")
-        metric_card(col2, "Avg Risk Score", f"{avg_risk:.1f}", color="#f59e0b")
-        metric_card(col3, "High Risk", high_risk, color="#ef4444")
-        metric_card(col4, "Countries", risk_df['country'].nunique() if 'country' in risk_df else 0, color="#22c55e")
+        metric_card(col1, "Total Suppliers", len(risk_df), "factory", "icon-blue", "#1a73e8")
+        metric_card(col2, "Avg Risk Score", f"{avg_risk:.1f}", "alert", "icon-orange", "#f59e0b")
+        metric_card(col3, "High Risk", high_risk, "alert", "icon-red", "#ef4444")
+        metric_card(col4, "Countries", risk_df['country'].nunique() if 'country' in risk_df else 0, "globe", "icon-green", "#22c55e")
         
         st.markdown("<br>", unsafe_allow_html=True)
         
@@ -297,10 +319,10 @@ elif page == "Inventory Optimization":
         total_cost = inv_df['total_inventory_cost'].sum() if 'total_inventory_cost' in inv_df else 0
         avg_reorder = inv_df['reorder_point'].mean() if 'reorder_point' in inv_df else 0
         
-        metric_card(col1, "Avg EOQ", f"{avg_eoq:.0f}", color="#1a73e8")
-        metric_card(col2, "Total Cost", f"${total_cost:,.0f}", color="#22c55e")
-        metric_card(col3, "Avg Reorder Pt", f"{avg_reorder:.0f}", color="#7c4dff")
-        metric_card(col4, "Items", len(inv_df), color="#f59e0b")
+        metric_card(col1, "Avg EOQ", f"{avg_eoq:.0f}", "package", "icon-blue", "#1a73e8")
+        metric_card(col2, "Total Cost", f"${total_cost:,.0f}", "dollar", "icon-green", "#22c55e")
+        metric_card(col3, "Avg Reorder Pt", f"{avg_reorder:.0f}", "repeat", "icon-purple", "#7c4dff")
+        metric_card(col4, "Items", len(inv_df), "bar", "icon-orange", "#f59e0b")
         
         st.markdown("<br>", unsafe_allow_html=True)
         
