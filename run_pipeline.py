@@ -49,11 +49,13 @@ def main():
     print("=" * 60)
     print()
 
+    python_exe = sys.executable
+
     steps = [
-        ("Generate Suppliers", ["python", "src/data/supplier_generator.py"]),
-        ("Feature Engineering", ["python", "src/features/feature_engineering.py"]),
-        ("Data Transformations", ["python", "src/features/transformations.py"]),
-        ("Inventory Optimization", ["python", "src/models/inventory/optimizer.py"]),
+        ("Generate Suppliers", [python_exe, "src/data/supplier_generator.py"]),
+        ("Feature Engineering", [python_exe, "src/features/feature_engineering.py"]),
+        ("Data Transformations", [python_exe, "src/features/transformations.py"]),
+        ("Inventory Optimization", [python_exe, "src/models/inventory/optimizer.py"]),
     ]
 
     results = {}
