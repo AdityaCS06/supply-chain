@@ -71,4 +71,7 @@ htmlcov/
 
 # Streamlit
 .streamlit/
-./html/
+
+# HTML output
+html/
+html/*
