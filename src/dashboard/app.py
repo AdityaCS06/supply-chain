@@ -1291,7 +1291,7 @@ elif page == "Inventory":
             </div>
             """, unsafe_allow_html=True)
         
-        with col_right:
+        with col2:
             st.markdown("""
             <div class="chart-card">
                 <div class="card-title"><span>💰</span> Top 6 items by cost</div>
